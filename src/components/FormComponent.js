@@ -19,6 +19,10 @@ class FormComponent extends Component{
         }
     }
 
+    handleSubmit(e) {
+        alert('A email address was submitted: ' + this.state.value);
+        e.preventDefault();
+    }
 
     handleUserInput = (e) => {
         const name = e.target.name;
@@ -61,22 +65,22 @@ class FormComponent extends Component{
             <div className="container">
                 <div className="row mt-5">
                     <div className="col-lg">
-                        <form className="demoForm">
+                        <form className="demoForm" onSubmit={this.handleSubmit}>
                             <h2>Sign up</h2>
                             <FormErrorComponent formErrors={this.state.formErrors}/>
                             <div className="form-group mt-4">
                                 <label htmlFor="email">Email address</label>
 
                                 {/* Set value from state and handle user input onChange */}
-                                <input type="email" className="form-control" name="email" placeholder="Email address" value={this.state.email} onChange={this.handleUserInput}/>
+                                <input data-testid="email" type="email" className="form-control" name="email" placeholder="Email address" value={this.state.email} onChange={this.handleUserInput}/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
 
                                 {/* Set value from state and handle user input onChange */}
-                                <input type="password" className="form-control" name="password" placeholder="Password" value={this.state.password} onChange={this.handleUserInput}/>
+                                <input data-testid="password" type="password" className="form-control" name="password" placeholder="Password" value={this.state.password} onChange={this.handleUserInput}/>
                             </div>
-                            <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>Sign up</button>
+                            <button data-testid="button-disabled" type="submit" className="btn btn-primary" disabled={!this.state.formValid}>Sign up</button>
                         </form>
                     </div>
                 </div>                
